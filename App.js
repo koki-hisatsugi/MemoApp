@@ -1,6 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
 import Appbar from './src/compornents/Appbar';
 import MemoListScreen from './src/screens/MemoListScreen';
@@ -9,20 +11,26 @@ import MemoEditScreen from './src/screens/MemoEditScreen';
 import LoginScreen from './src/screens/LoginScreen';
 import SignupScreen from './src/screens/SignupScreen';
 
-export default class App extends React.Component {
-  render(){
-    return (
-        <View style={styles.container}>
-          <Appbar />
-          {/*<MemoDetailScreen />*/}
-          {/*<MemoListScreen />*/}
-          {/*<MemoEditScreen />*/}
-          {/*<LoginScreen />*/}
-          <SignupScreen />
-        </View>
-    );
+const App = createStackNavigator({
+  Home: { screen: MemoListScreen },
+  MemoDetail: { screen: MemoDetailScreen },
+  MemoEdit: { screen: MemoEditScreen },
+  Login: { screen: LoginScreen },
+  Signup: { screen: SignupScreen },
+}, {
+  defaultNavigationOptions: {
+    headerTitle: 'Memoooot',
+    headerStyle:{
+      backgroundColor: '#265366',
+    },
+    headerTitleStyle:{
+      color: '#fff',
+      alignItems: 'center',
+    },
+    headerTitleAlign: 'center',
+    // ... オプション
   }
-}
+});
 
 const styles = StyleSheet.create({
   container: {
@@ -33,3 +41,5 @@ const styles = StyleSheet.create({
     paddingTop:78,
   }
 });
+
+export default createAppContainer(App);
