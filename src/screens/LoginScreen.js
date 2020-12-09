@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, View, Text, TextInput, Button, TouchableHighlight} from 'react-native';
+import firebase from 'firebase';
 
 class LoginScreen extends React.Component{
   state = {
@@ -8,11 +9,16 @@ class LoginScreen extends React.Component{
   }
 
   handleSubmit(){
+    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+    .then((result) => {
+      console.log("success", result.user);
+      this.props.navigation.navigate('Home');
+    })
 
-    console.log("submited");
+    .catch((error) => {
+      console.log("error", error);
+    })
     // ()=>{this.props.navigation.navigate('Home');}
-
-    //Login
 
   }
 
