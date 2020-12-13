@@ -3,9 +3,9 @@ import {StyleSheet, View, Text} from 'react-native';
 
 import CircleButton from '../elements/CircleButton';
 
-class MemoDetailScreen extends React.Component{
-  render(){
-    return(
+class MemoDetailScreen extends React.Component {
+  render() {
+    return (
       <View style={styles.container}>
         <View>
           <View style={styles.memoHeader}>
@@ -23,7 +23,7 @@ class MemoDetailScreen extends React.Component{
         </View>
 
         <CircleButton color="white" style={styles.editButton} onPress={()=>{this.props.navigation.navigate('MemoEdit');}}>
-          {"\uf303"}
+          {'\uf303'}
         </CircleButton>
       </View>
     );

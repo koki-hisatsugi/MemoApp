@@ -1,29 +1,30 @@
 import React from 'react';
-import {StyleSheet, View, Text, TextInput, Button, TouchableHighlight} from 'react-native';
+import {
+  StyleSheet, View, Text, TextInput, TouchableHighlight,
+} from 'react-native';
 import firebase from 'firebase';
 
-class LoginScreen extends React.Component{
+class LoginScreen extends React.Component {
   state = {
-    emall:"",
-    password:"",
+    email:'user1@example.com',
+    password:'password',
   }
 
-  handleSubmit(){
+  handleSubmit() {
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-    .then((result) => {
-      console.log("success", result.user);
-      this.props.navigation.navigate('Home', {currentUser: result.user});
-    })
+      .then((result) => {
+        console.log('success', result.user);
+        this.props.navigation.navigate('Home');
+      })
 
-    .catch((error) => {
-      console.log("error", error);
-    })
+      .catch((error) => {
+        console.log('error', error);
+      });
     // ()=>{this.props.navigation.navigate('Home');}
-
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <View style={styles.container}>
         <Text style={styles.title}>
           ログイン
@@ -34,7 +35,8 @@ class LoginScreen extends React.Component{
           onChangeText={(text) => { this.setState({ email: text }); }}
           autoCapitalize="none"
           autoCorrect={false}
-          placeholder="メールアドレス"/>
+          placeholder="メールアドレス"
+        />
         <TextInput
           style={styles.input}
           value={this.state.password}
@@ -42,8 +44,9 @@ class LoginScreen extends React.Component{
           autoCapitalize="none"
           autoCorrect={false}
           placeholder="パスワード"
-          secureTextEntry/>
-        <TouchableHighlight style={styles.button}  onPress={this.handleSubmit.bind(this)} underlayColor="#C70F66">
+          secureTextEntry
+        />
+        <TouchableHighlight style={styles.button} onPress={this.handleSubmit.bind(this)} underlayColor="#C70F66">
           <Text style={styles.buttonTitle}>ログインする</Text>
         </TouchableHighlight>
       </View>
@@ -83,7 +86,7 @@ const styles = StyleSheet.create({
   buttonTitle: {
     color: '#fff',
     fontSize: 18,
-  }
+  },
 });
 
 export default LoginScreen;

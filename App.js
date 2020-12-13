@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
+import firebase from 'firebase';
 import Appbar from './src/compornents/Appbar';
 import MemoListScreen from './src/screens/MemoListScreen';
 import MemoDetailScreen from './src/screens/MemoDetailScreen';
@@ -12,10 +13,9 @@ import MemoCreateScreen from './src/screens/MemoCreateScreen';
 import LoginScreen from './src/screens/LoginScreen';
 import SignupScreen from './src/screens/SignupScreen';
 
-import firebase from 'firebase';
 import ENV from './env.json';
 
-require("firebase/firestore");
+require('firebase/firestore');
 
 const Config = {
 apiKey: ENV.FIREBASE_API_KEY,
@@ -51,7 +51,7 @@ const App = createStackNavigator({
     },
     headerTitleAlign: 'center',
     // ... オプション
-  }
+  },
 });
 
 const styles = StyleSheet.create({
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingTop:78,
-  }
+  },
 });
 
 export default createAppContainer(App);

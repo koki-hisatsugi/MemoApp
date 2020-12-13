@@ -1,9 +1,9 @@
 import React from 'react';
-import {StyleSheet,View,Text} from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 
 class BodyText extends React.Component {
   render() {
-    return(
+    return (
       <View>
         <Text style={styles.text}>
           {this.props.children}
@@ -13,7 +13,7 @@ class BodyText extends React.Component {
   }
 }
 
-const styles=StyleSheet.create({
+const styles = StyleSheet.create({
   text:{
     color:'#DDD',
     backgroundColor:'#eee',

@@ -1,9 +1,9 @@
 import React from 'react';
-import {StyleSheet,View,Text} from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 
-class Appbar extends React.Component{
-  render(){
-    return(
+class Appbar extends React.Component {
+  render() {
+    return (
       <View style={styles.appbar}>
         <View>
           <Text style={styles.appbarTitle}>MEMOOOT</Text>
@@ -12,6 +12,7 @@ class Appbar extends React.Component{
     );
   }
 }
+
 const styles = StyleSheet.create({
   appbar:{
     position:'absolute',

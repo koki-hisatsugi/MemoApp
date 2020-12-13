@@ -8,9 +8,14 @@
   "rules":{
     "key-spacing": 0,
     "no-use-before-define":0,
+    "linebreak-style":0,
     "react/prefer-stateless-function":0,
     "react/jsx-filename-extension":0,
-    "react/prop-types":0
+    "react/prop-types":0,
+    "react/state-in-constructor":0,
+    "react/no-unused-state":0,
+    "react/destructuring-assignment":0,
+    "react/jsx-no-bind":0
   },
   "parser":"babel-eslint"
 }
