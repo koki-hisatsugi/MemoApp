@@ -1,11 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+// import { StatusBar } from 'expo-status-bar';
+// import React from 'react';
+// import { StyleSheet } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import firebase from 'firebase';
-import Appbar from './src/compornents/Appbar';
 import MemoListScreen from './src/screens/MemoListScreen';
 import MemoDetailScreen from './src/screens/MemoDetailScreen';
 import MemoEditScreen from './src/screens/MemoEditScreen';
@@ -18,13 +17,13 @@ import ENV from './env.json';
 require('firebase/firestore');
 
 const Config = {
-apiKey: ENV.FIREBASE_API_KEY,
-authDomain: ENV.FIREBASE_AUTH_DOMAIN,
-projectId: ENV.FIREBASE_PRJ_ID,
-storageBucket: ENV.FIREBASE_STRAGE,
-messagingSenderId: ENV.FIREBASE_SENDER_ID,
-appId: ENV.FIREBASE_APP_ID,
-measurementId: ENV.FIREBASE_MEASUREMENT_ID,
+  apiKey: ENV.FIREBASE_API_KEY,
+  authDomain: ENV.FIREBASE_AUTH_DOMAIN,
+  projectId: ENV.FIREBASE_PRJ_ID,
+  storageBucket: ENV.FIREBASE_STRAGE,
+  messagingSenderId: ENV.FIREBASE_SENDER_ID,
+  appId: ENV.FIREBASE_APP_ID,
+  measurementId: ENV.FIREBASE_MEASUREMENT_ID,
 };
 // Initialize Firebase
 firebase.initializeApp(Config);
@@ -54,7 +53,7 @@ const App = createStackNavigator({
   },
 });
 
-const styles = StyleSheet.create({
+/* const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFDF6',
@@ -62,6 +61,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingTop:78,
   },
-});
+}); */
 
 export default createAppContainer(App);

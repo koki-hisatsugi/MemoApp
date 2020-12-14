@@ -4,7 +4,6 @@ import { StyleSheet, View } from 'react-native';
 import firebase from 'firebase';
 
 import MemoList from '../compornents/MemoList';
-import Appbar from '../compornents/Appbar';
 import CircleButton from '../elements/CircleButton';
 
 class MemoListScreen extends React.Component {

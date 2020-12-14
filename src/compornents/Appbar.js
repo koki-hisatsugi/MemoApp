@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     alignItems:'center',
     shadowColor:'#000',
-    shadowOffset:{width: 0,height: 0},
+    shadowOffset:{ width: 0, height: 0 },
     shadowOpacity:0.5,
     shadowRadius:3,
     elevation: 5,
@@ -34,6 +34,6 @@ const styles = StyleSheet.create({
   appbarTitle:{
     color:'#fff',
     fontSize:18,
-  }
+  },
 });
 export default Appbar;

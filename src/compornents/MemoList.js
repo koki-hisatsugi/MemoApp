@@ -14,7 +14,6 @@ const dateString = (date) => {
 
 class MemoList extends React.Component {
   renderMemo({ item }) {
-    console.log(item);
     return (
       <TouchableHighlight onPress={() => { this.props.navigation.navigate('MemoDetail', { memo: item }); }}>
         <View style={styles.memoListItem}>
@@ -26,7 +25,6 @@ class MemoList extends React.Component {
   }
 
   render() {
-    console.log(this.props.memoList);
     return (
       <View style={styles.memoList}>
         <FlatList data={this.props.memoList} renderItem={this.renderMemo.bind(this)} />
