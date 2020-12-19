@@ -1,12 +1,21 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+import CircleButton from '../elements/CircleButton';
+import LoginScreen from '../screens/LoginScreen';
 
 class Appbar extends React.Component {
+  handlePress() {
+    this.props.navigation.navigate('LoginScreen');
+  }
+
   render() {
     return (
       <View style={styles.appbar}>
         <View>
-          <Text style={styles.appbarTitle}>MEMOOOT</Text>
+          <Text style={styles.appbarTitle}>MEMT</Text>
+          <CircleButton onPress={this.handlePress.bind(this)}>
+            ログイン画面
+          </CircleButton>
         </View>
       </View>
     );

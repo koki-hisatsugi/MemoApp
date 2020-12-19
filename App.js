@@ -38,7 +38,7 @@ const App = createStackNavigator({
   MemoCreate: { screen: MemoCreateScreen },
 }, {
   defaultNavigationOptions: {
-    headerTitle: 'Memoooot',
+    headerTitle: 'メモ豆',
     headerStyle:{
       backgroundColor: '#265366',
     },

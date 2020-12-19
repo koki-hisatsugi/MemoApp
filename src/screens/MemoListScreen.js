@@ -42,12 +42,19 @@ class MemoListScreen extends React.Component {
     this.props.navigation.navigate('MemoCreate');
   }
 
+  handlePressSignout() {
+    this.props.navigation.navigate('Login');
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <MemoList memoList={this.state.memoList} navigation={this.props.navigation} />
         <CircleButton onPress={this.handlePress.bind(this)}>
           {'\uf067'}
+        </CircleButton>
+        <CircleButton onPress={this.handlePressSignout.bind(this)} style={styles.button}>
+          {'\uf2f5'}
         </CircleButton>
       </View>
     );
@@ -58,6 +65,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width:'100%',
+  },
+  button: {
+    left:30,
   },
 });
 

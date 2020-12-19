@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
+import firebase from 'firebase';
 import CircleButton from '../elements/CircleButton';
 
 const dateString = (date) => {
@@ -15,15 +16,28 @@ const dateString = (date) => {
 class MemoDetailScreen extends React.Component {
   state = {
     memo: {},
+    key:'',
   }
 
   componentDidMount() {
     const { params } = this.props.navigation.state;
-    this.setState({ memo: params.memo });
+    this.setState({ memo: params.memo, key: params.memo.key });
   }
 
   returnMemo(memo) {
     this.setState({ memo });
+  }
+
+  deleteMemo() {
+    const db = firebase.firestore();
+    const { currentUser } = firebase.auth();
+    db.collection(`users/${currentUser.uid}/memos`).doc(this.state.key).delete()
+      .then(() => {
+        this.props.navigation.goBack();
+      })
+      .catch((error) => {
+        console.error('Error removing document: ', error);
+      });
   }
 
   render() {
@@ -51,6 +65,13 @@ class MemoDetailScreen extends React.Component {
           onPress={() => { this.props.navigation.navigate('MemoEdit', { ...memo, returnMemo: this.returnMemo.bind(this) }); }}
         >
           {'\uf303'}
+        </CircleButton>
+        <CircleButton
+          color="white"
+          style={styles.deleteButton}
+          onPress={this.deleteMemo.bind(this)}
+        >
+          {'\uf2ed'}
         </CircleButton>
       </View>
     );
@@ -93,6 +114,10 @@ const styles = StyleSheet.create({
   },
   editButton:{
     top:75,
+
+  },
+  deleteButton:{
+    bottom:30,
 
   },
 });

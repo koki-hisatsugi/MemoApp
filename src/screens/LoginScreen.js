@@ -4,23 +4,49 @@ import {
 } from 'react-native';
 import firebase from 'firebase';
 import { NavigationActions, StackActions } from 'react-navigation';
+import * as SecureStore from 'expo-secure-store';
+
+import Loading from '../elements/Loading';
 
 class LoginScreen extends React.Component {
   state = {
-    email:'user1@example.com',
-    password:'password',
+    email:'',
+    password:'',
+    isLoading:false,
+  }
+
+  async componentDidMount() {
+    const email = await SecureStore.getItemAsync('email');
+    const password = await SecureStore.getItemAsync('password');
+    this.setState({ email });
+    this.setState({ password });
+    // firebase.auth().signInWithEmailAndPassword(email, password)
+    //   .then(() => {
+    //     this.setState({ isLoading: false });
+    //     this.navigateToHome();
+    //   })
+    //   .catch(() => {
+    //     this.setState({ isLoading: false });
+    //   });
+  }
+
+  navigateToHome() {
+    const resetAction = StackActions.reset({
+      index:0,
+      actions: [
+        NavigationActions.navigate({ routeName: 'Home' }),
+      ],
+    });
+    this.props.navigation.dispatch(resetAction);
   }
 
   handleSubmit() {
+    this.setState({ isLoading: true });
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
-        const resetAction = StackActions.reset({
-          index:0,
-          actions: [
-            NavigationActions.navigate({ routeName: 'Home' }),
-          ],
-        });
-        this.props.navigation.dispatch(resetAction);
+        SecureStore.setItemAsync('email', this.state.email);
+        SecureStore.setItemAsync('password', this.state.password);
+        this.navigateToHome();
       })
 
       .catch(() => {
@@ -35,6 +61,7 @@ class LoginScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <Loading text="ログイン中" isLoading={this.state.isLoading} />
         <Text style={styles.title}>
           ログイン
         </Text>
